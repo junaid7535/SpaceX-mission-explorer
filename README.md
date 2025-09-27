@@ -9,8 +9,8 @@ A modern React web application for exploring SpaceX launches, built with perform
 ## ✨ Features
 
 - 🚀 **Browse Launches**: View all SpaceX missions with key details  
-- 🔍 **Smart Search**: Debounced search by mission name  
-- ⚡ **Advanced Filtering**: Filter by year, success status, and favorites  
+- 🔍 **Search**: Debounced search by mission name  
+- ⚡ **Filtering**: Filter by year, success status, and favorites  
 - ⭐ **Favorites System**: Bookmark missions with local storage persistence  
 - 📱 **Responsive Design**: Optimized for desktop and mobile  
 - ♿ **Accessible**: Full keyboard navigation and screen reader support  
@@ -67,3 +67,28 @@ npm install
 # 3. Start development server
 npm run dev
 # Application runs at http://localhost:5173
+
+
+## ⚡ Performance Features
+
+- Code Splitting (via Vite)  
+- Lazy Loading (components on demand)  
+- Image Optimization (responsive & lazy loading)  
+- Debounced Search (300ms delay)  
+- Efficient Local Storage handling  
+
+---
+
+## ⚠️ Known Limitations
+
+### API Limitations
+- API rate limits: **30 requests/minute**  
+- Some launches may have incomplete data/images  
+
+### Functional Limitations
+- No offline mode yet  
+- Data freshness depends on SpaceX API  
+
+### Technical Limitations
+- Browser `localStorage` limited to ~5MB per domain  
+
