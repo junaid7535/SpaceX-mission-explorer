@@ -68,27 +68,3 @@ npm install
 npm run dev
 # Application runs at http://localhost:5173
 
-
-## ⚡ Performance Features
-
-- Code Splitting (via Vite)  
-- Lazy Loading (components on demand)  
-- Image Optimization (responsive & lazy loading)  
-- Debounced Search (300ms delay)  
-- Efficient Local Storage handling  
-
----
-
-## ⚠️ Known Limitations
-
-### API Limitations
-- API rate limits: **30 requests/minute**  
-- Some launches may have incomplete data/images  
-
-### Functional Limitations
-- No offline mode yet  
-- Data freshness depends on SpaceX API  
-
-### Technical Limitations
-- Browser `localStorage` limited to ~5MB per domain  
-
