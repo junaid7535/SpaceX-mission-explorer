@@ -55,26 +55,26 @@ A modern React web application for exploring SpaceX launches, built with perform
 ---
 
 ##  API Limitations
-Rate Limiting
-SpaceX API has rate limits (30 requests/minute)
 
-The application implements client-side caching to minimize API calls
+- SpaceX API has rate limits (30 requests/minute)
 
-Search functionality is debounced to reduce unnecessary requests
+- The application implements client-side caching to minimize API calls
 
-Consider implementing a retry mechanism with exponential backoff
+- Search functionality is debounced to reduce unnecessary requests
+
+- Consider implementing a retry mechanism with exponential backoff
 
 ## Test Coverage
-Component Testing
-Render tests for main components
 
-LaunchCard component rendering and props validation
+- Render tests for main components
 
-LaunchModal open/close functionality and content display
+- LaunchCard component rendering and props validation
 
-SearchFilters user interactions and state management
+- LaunchModal open/close functionality and content display
 
-LoadingSkeleton accessibility and responsive behavior
+- SearchFilters user interactions and state management
+
+- LoadingSkeleton accessibility and responsive behavior
 
 
 
