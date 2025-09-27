@@ -1,6 +1,6 @@
 // src/App.jsx
 import React, { useState, useEffect } from 'react';
-import { Rocket, Star } from 'lucide-react'; // not using all the icons, so I trimmed this
+import { Rocket, Star } from 'lucide-react'; 
 import LaunchCard from './components/LaunchCard';
 import LaunchModal from './components/LaunchModal';
 import SearchFilters from './components/SearchFilters';
@@ -10,24 +10,24 @@ import { useFavorites } from './hooks/useFavorites';
 import './App.css';
 
 function App() {
-  const [allLaunches, setAllLaunches] = useState([]);     // renamed to be clearer
-  const [visibleLaunches, setVisibleLaunches] = useState([]); // filtered list
+  const [allLaunches, setAllLaunches] = useState([]);     
+  const [visibleLaunches, setVisibleLaunches] = useState([]); 
   const [selectedLaunch, setSelectedLaunch] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
-  const [loading, setLoading] = useState(true); // starts true so we see skeletons
+  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  // custom hook for handling favorites
+  
   const { favorites, toggleFavorite, isFavorite } = useFavorites();
 
-  // filtering state
+  
   const [searchText, setSearchText] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
   const [onlySuccessful, setOnlySuccessful] = useState(false);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
-  // load launches from API
+  
   useEffect(() => {
     fetchLaunches();
   }, []);
@@ -38,18 +38,18 @@ function App() {
       setErrorMessage(null);
       const data = await getLaunches();
       setAllLaunches(data);
-      setVisibleLaunches(data); // initially show everything
+      setVisibleLaunches(data); 
     } catch (err) {
       setErrorMessage('Could not fetch launches. Try again later.');
-      console.warn('fetchLaunches error:', err); // switched from error to warn
+      console.warn('fetchLaunches error:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  // filter launches whenever something changes
+ 
   useEffect(() => {
-    let results = [...allLaunches]; // just to be safe, clone the array
+    let results = [...allLaunches]; 
 
     if (showOnlyFavorites) {
       results = results.filter(l => isFavorite(l.id));
@@ -89,13 +89,12 @@ function App() {
     fetchLaunches();
   };
 
-  // extract available years from launches (note: might be slow with big arrays but whatever)
   const availableYears = [...new Set(allLaunches.map(l => new Date(l.date_utc).getFullYear()))]
     .sort((a, b) => b - a);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* header */}
+      
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
@@ -106,7 +105,7 @@ function App() {
               </h1>
             </div>
 
-            {/* Favorites toggle button */}
+           
             <button
               onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
@@ -122,7 +121,7 @@ function App() {
         </div>
       </header>
 
-      {/* main content */}
+      
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <SearchFilters
           searchTerm={searchText}
@@ -136,7 +135,7 @@ function App() {
           onShowFavoritesChange={setShowOnlyFavorites}
         />
 
-        {/* Error message if something blew up */}
+        
         {errorMessage && (
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
             <div className="flex items-center justify-between">
@@ -151,7 +150,7 @@ function App() {
           </div>
         )}
 
-        {/* Show skeletons while loading */}
+        
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, idx) => (
@@ -159,7 +158,7 @@ function App() {
             ))}
           </div>
         ) : visibleLaunches.length === 0 ? (
-          // if no results
+          
           <div className="text-center py-12">
             <div className="bg-white rounded-lg shadow-sm border p-8">
               <Rocket className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -174,7 +173,7 @@ function App() {
             </div>
           </div>
         ) : (
-          // actual grid of launches
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleLaunches.map((launch) => (
               <LaunchCard
@@ -189,7 +188,6 @@ function App() {
         )}
       </main>
 
-      {/* modal with launch details */}
       <LaunchModal
         launch={selectedLaunch}
         isOpen={showModal}
